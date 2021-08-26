@@ -4,18 +4,19 @@ import style from "./Post.module.css";
 
 type PostTypeProps = {
     title : string;
-    type : string;
     img : string;
+    value : number;
 
 }
 
 function  Post ( props : PostTypeProps) {
+    const {img,title,value}=props;
     return (
         <div className={style.item}>
-            <img src={props.img}/>
-            {props.title}
+            <img alt={'profil'} src={img}/>
+            {title}
             <div>
-                <span>{props.type}</span>
+                <span>{`like ${value}`}</span>
             </div>
         </div>
     )

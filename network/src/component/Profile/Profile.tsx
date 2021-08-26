@@ -1,12 +1,12 @@
 import React from 'react' ;
-import style from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const ContentProfile = () => {
     return (
-        <div className={style.content}>
-            <div className={style.siti}></div>
-            <div className={style.item}>ava + content</div>
+        <div>
+            <ProfileInfo img={'https://www.section.io/engineering-education/history-of-nodejs/nodejs-use-cases-cover-image.png'}/>
+
             <MyPosts/>
         </div>
     )

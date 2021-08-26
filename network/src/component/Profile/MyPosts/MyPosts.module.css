@@ -1,3 +1,49 @@
 .item {
     color: #f7e018;
+    padding: 10px;
+}
+
+.itemTitle {
+    color: #f7e018;
+    padding: 10px;
+    margin: 0;
+}
+
+.itemTextArea{
+    color: #f7e018;
+    background-color: #a4cac8;
+    padding: 10px;
+    border: #000000 solid 5px;
+    border-radius: 30px;
+    min-width: 500px;
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 150px;
+}
+
+.itemTextArea:focus{
+    color: #f7e018;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #79aca9;
+    padding: 10px;
+}
+
+
+input, textarea {outline:none;}
+
+.itemButton {
+    background-color:#f7e018;
+    color: #000000;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+
+
+.itemPost {
+    color: #f7e018;
+    padding: 10px;
 }
