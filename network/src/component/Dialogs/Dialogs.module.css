@@ -9,19 +9,66 @@
     padding: 10px;
 }
 
-.dialogsItems .active {
-    color: aqua;
+.dialogsItems :hover {
+    color: #a4cac8;
+
 }
 
 .dialog {
+    text-decoration: none;
+    color: #f7e018;
+}
+
+
+.messageYour {
+    text-align: right;
+
+}
+
+.hisMesseges {
 
 }
 
 
-.messages {
+
+.message {
+    padding: 10px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    border:  #f7e018 3px solid;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #05afa5;
+
+}
+
+.message:hover {
+    color: #ecd61d;
+    background-color: #06c2b7;
+
+}
+
+.itemTextArea{
+    color: #f7e018;
+    background-color: #a4cac8;
+    padding: 10px;
+    border: #000000 solid 5px;
+    border-radius: 30px;
+    min-width: 500px;
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 150px;
+}
+
+.itemTextArea:focus{
+    color: #f7e018;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #79aca9;
     padding: 10px;
 }
 
-.message {
 
-}
+input, textarea {outline:none;}
+

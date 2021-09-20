@@ -4,7 +4,7 @@ import style from './Setings.module.css'
 
 function Setings () {
     return (
-        <div className={style.item}>Setings</div>
+        <img className={style.imgWorck} src={'https://number8.com/wp-content/uploads/2020/11/Agile-while-Outsourcing.png'}/>
     )
 }
 

@@ -3,7 +3,7 @@ import style from './Music.module.css'
 
 function Music () {
     return (
-        <div className={style.item}>Music</div>
+        <img className={style.imgWorck} src={'https://number8.com/wp-content/uploads/2020/11/Agile-while-Outsourcing.png'}/>
     )
 }
 

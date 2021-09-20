@@ -4,7 +4,7 @@ import style from './News.module.css'
 
 function News () {
     return (
-        <div className={style.item}>News</div>
+        <img className={style.imgWorck} src={'https://number8.com/wp-content/uploads/2020/11/Agile-while-Outsourcing.png'}/>
     )
 }
 
