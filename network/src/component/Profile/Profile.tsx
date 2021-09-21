@@ -1,14 +1,13 @@
 import React from 'react' ;
 import MyPosts  from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postDataType, profilePageType} from "../../redux/state/state";
+import { profilePageType} from "../../redux/state/state";
 
 
 
 type ProfilePostType = {
     data :  profilePageType;
-    addPost:()=>void;
-    updateNewPostText:(newText:string)=>void
+    dispatch: (action:any)=>void;
 }
 
 const ContentProfile = (props:ProfilePostType) => {
@@ -18,7 +17,7 @@ const ContentProfile = (props:ProfilePostType) => {
         <div>
             <ProfileInfo img={'https://www.section.io/engineering-education/history-of-nodejs/nodejs-use-cases-cover-image.png'}/>
 
-            <MyPosts Data={props.data} updateNewPostText={props.updateNewPostText} addPost={props.addPost}/>
+            <MyPosts Data={props.data} dispatch={props.dispatch}/>
         </div>
     )
 };

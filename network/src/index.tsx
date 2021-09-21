@@ -9,10 +9,8 @@ export function rerenderEntireTree() {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                addNewMassage={store.addNewMassage.bind(store)}
-                state={store.getState()} addPost={store.addPost.bind(store)}
-                updateNewPostText={store.addNewPostText.bind(store)}
-                addNewMessageText={store.addNewMessageText.bind(store)}
+                state={store.getState()}
+                dispatch={store.dispatch.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')

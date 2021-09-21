@@ -14,10 +14,7 @@ import Friends from "./component/Friends/Friends";
 
 type AppPropsDataType = {
     state:stateType;
-    addPost:()=>void;
-    updateNewPostText:(newText:string)=>void
-    addNewMassage:()=>void;
-    addNewMessageText:(newText:string)=>void;
+    dispatch: (action:any)=>void;
 }
 
 export const PATH = {
@@ -33,19 +30,19 @@ export const PATH = {
 
 function App(props:AppPropsDataType) {
 
-
+    //distructarizaition
+    const {messagesPage,profilePage} = props.state
+    const {dispatch} = props
 
 
 
     const componentDialog = ()=><Dialogs
-        state={props.state.messagesPage}
-        addNewMassage ={props.addNewMassage}
-        addNewMessageText = {props.addNewMessageText}
+        state={messagesPage}
+        dispatch={dispatch}
     />
     const componentProfile = ()=> <ContentProfile
-        data={props.state.profilePage}
-        updateNewPostText={props.updateNewPostText}
-        addPost={props.addPost}
+        data={profilePage}
+        dispatch = {dispatch}
     />
 
     return (

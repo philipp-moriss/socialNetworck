@@ -31,18 +31,16 @@ export type stateType = {
 
 }
 
+export type KingActionType = addpostACType | updatePostTextACType | addMassageACType |updateMassageTextACType
 
 type storeType = {
     _state: stateType;
-    getState: ()=> stateType;
-    _callSubscriber: ()=>void;
-    addPost : ()=> void;
-    addNewPostText: (newText:string)=>void;
-    subscribe:(observer:()=>void)=>void;
-    addNewMassage: ()=> void;
-    addNewMessageText : (newText:string)=>void;
-}
+    getState: () => stateType;
+    _callSubscriber: () => void;
+    subscribe: (observer: () => void) => void;
+    dispatch: (action: KingActionType) => void
 
+}
 let store: storeType = {
     _state : {
         profilePage:{
@@ -90,36 +88,67 @@ let store: storeType = {
     _callSubscriber (){
         console.log("state change")
     },
-    addPost () {
-        const newPost = {
-            id:3,
-            title:this._state.profilePage.newPostText,
-            value: 0,
-            img: "https://www.saashub.com/images/app/service_logos/34/fecf8242eb39/large.png?1551897651",
-        }
-        this._state.profilePage.postData.unshift(newPost)
-        this._callSubscriber()
-    },
-    addNewPostText (newText:string){
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    },
     subscribe(observer:()=>void){
         this._callSubscriber = observer
     },
-    addNewMassage () {
-        const newMessage ={id: 2, message: this._state.messagesPage.newMessageText, yourmesseges:true}
-        this._state.messagesPage.messagesData.push(newMessage)
-        this._callSubscriber()
-    },
-    addNewMessageText (newText:string){
-        this._state.messagesPage.newMessageText = newText
-        this._callSubscriber()
+    dispatch(action){
+            if(action.type === "ADD-POST"){
+                const newPost = {
+                    id:3,
+                    title:this._state.profilePage.newPostText,
+                    value: 0,
+                    img: "https://www.saashub.com/images/app/service_logos/34/fecf8242eb39/large.png?1551897651",
+                }
+                this._state.profilePage.postData.unshift(newPost)
+                this._callSubscriber()
+            }
+            else if (action.type==="UPDATE-NEW-POST-TEXT"){
+                this._state.profilePage.newPostText = action.newText
+                this._callSubscriber()
+            }
+            if (action.type === "ADD-MASSAGE"){
+                const newMessage ={id: 2, message: this._state.messagesPage.newMessageText, yourmesseges:true}
+                this._state.messagesPage.messagesData.push(newMessage)
+                this._callSubscriber()
+            }
+            if (action.type === "UPDATE-NEW-MASSAGE-TEXT"){
+                this._state.messagesPage.newMessageText = action.newText
+                this._callSubscriber()
+            }
+
+
     }
 
 }
 
+export type  addpostACType = ReturnType<typeof addpostAC>
+export const addpostAC = ()=>{
+    return{
+        type:'ADD-POST'
+    }as const
+}
+export type  updatePostTextACType = ReturnType<typeof updatePostTextAC>
+export const updatePostTextAC = (newText:string)=>{
+    return{
+        type:'UPDATE-NEW-POST-TEXT',
+        newText:newText,
+    }as const
+}
 
+
+export type  addMassageACType = ReturnType<typeof addMassageAC>
+export const addMassageAC = ()=>{
+    return{
+        type:'ADD-MASSAGE'
+    }as const
+}
+export type  updateMassageTextACType = ReturnType<typeof updateMassageTextAC>
+export const updateMassageTextAC = (newText:string)=>{
+    return{
+        type:'UPDATE-NEW-MASSAGE-TEXT',
+        newText:newText,
+    }as const
+}
 
 
 

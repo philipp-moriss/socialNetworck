@@ -2,7 +2,13 @@ import React from "react";
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/Dialogitem";
 import Message from "./DialogMassage/DialogsMassage";
-import {dialogsDataType, messageDataType} from "../../redux/state/state";
+import {
+    addMassageAC,
+    dialogsDataType,
+    KingActionType,
+    messageDataType,
+    updateMassageTextAC
+} from "../../redux/state/state";
 import ButtonMaster from "../ButtonMaster/ButtonMaster";
 
 
@@ -12,27 +18,27 @@ import ButtonMaster from "../ButtonMaster/ButtonMaster";
 
 type Dialogpropstype = {
     state: { messagesData: Array<messageDataType>,newMessageText:string ,dialogsData: Array<dialogsDataType>, }
-    addNewMassage : ()=>void;
-    addNewMessageText:(newText:string)=>void;
+    dispatch: (action:KingActionType)=>void
 
 }
 
 
 
 function Dialogs(props:Dialogpropstype) {
+    //destructuring
+    const {dialogsData,messagesData} = props.state
+    const {dispatch} = props
 
-
-    const dialog = props.state.dialogsData.map(d=><DialogItem key={d.id} img={d.img} name={d.name} id={d.id}/>);
-    const message = props.state.messagesData.map(m=><Message  key={m.id} yourmesseges={m.yourmesseges} message={m.message}/>);
+    const dialog = dialogsData.map(d=><DialogItem key={d.id} img={d.img} name={d.name} id={d.id}/>);
+    const message = messagesData.map(m=><Message  key={m.id} yourmesseges={m.yourmesseges} message={m.message}/>);
     const refForArea: any = React.createRef();
     const addMessage = () => {
-        const text = refForArea.current.value;
-        props.addNewMassage()
-        props.addNewMessageText('')
+        dispatch(addMassageAC())
+        dispatch(updateMassageTextAC(''))
     }
     const onChangeTextHandler = () => {
         let text = refForArea.current?.value
-        props.addNewMessageText(text ? text:'')
+        dispatch(updateMassageTextAC(text?text:''))
     }
     return (<div className={style.dialogs}>
         <div className={style.dialogsItems}>
