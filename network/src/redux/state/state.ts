@@ -1,3 +1,8 @@
+import profileReducer, {addpostACType, updatePostTextACType} from "../reducer/profile.reducer";
+import messageReducer, {addMassageACType, updateMassageTextACType} from "../reducer/message.reducer";
+import sidBarReducer from "../reducer/sidBar.reducer";
+
+
 export type postDataType = {
     id: number;
     title: string;
@@ -21,13 +26,19 @@ export type profilePageType = {
     postData: Array<postDataType>,
     newPostText : string
 }
-
+export type messagesPageType = {
+    messagesData: Array<messageDataType>;
+    newMessageText:string;
+    dialogsData: Array<dialogsDataType>;
+}
+export type sidBarType = []
 
 
 
 export type stateType = {
     profilePage:profilePageType;
-    messagesPage:{ messagesData: Array<messageDataType>,newMessageText:string ,dialogsData: Array<dialogsDataType>, };
+    messagesPage:messagesPageType;
+    sidBar:sidBarType
 
 }
 
@@ -38,7 +49,8 @@ type storeType = {
     getState: () => stateType;
     _callSubscriber: () => void;
     subscribe: (observer: () => void) => void;
-    dispatch: (action: KingActionType) => void
+    dispatch: (action: KingActionType) => void;
+
 
 }
 let store: storeType = {
@@ -79,7 +91,7 @@ let store: storeType = {
             ],
 
         },
-
+        sidBar:[]
 
     },
     getState (){
@@ -92,63 +104,16 @@ let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action){
-            if(action.type === "ADD-POST"){
-                const newPost = {
-                    id:3,
-                    title:this._state.profilePage.newPostText,
-                    value: 0,
-                    img: "https://www.saashub.com/images/app/service_logos/34/fecf8242eb39/large.png?1551897651",
-                }
-                this._state.profilePage.postData.unshift(newPost)
-                this._callSubscriber()
-            }
-            else if (action.type==="UPDATE-NEW-POST-TEXT"){
-                this._state.profilePage.newPostText = action.newText
-                this._callSubscriber()
-            }
-            if (action.type === "ADD-MASSAGE"){
-                const newMessage ={id: 2, message: this._state.messagesPage.newMessageText, yourmesseges:true}
-                this._state.messagesPage.messagesData.push(newMessage)
-                this._callSubscriber()
-            }
-            if (action.type === "UPDATE-NEW-MASSAGE-TEXT"){
-                this._state.messagesPage.newMessageText = action.newText
-                this._callSubscriber()
-            }
-
-
+        this._state.profilePage = profileReducer(this._state.profilePage,action)
+        this._state.messagesPage = messageReducer(this._state.messagesPage,action)
+        this._state.sidBar = sidBarReducer(this._state.sidBar,action)
+        this._callSubscriber()
     }
 
 }
 
-export type  addpostACType = ReturnType<typeof addpostAC>
-export const addpostAC = ()=>{
-    return{
-        type:'ADD-POST'
-    }as const
-}
-export type  updatePostTextACType = ReturnType<typeof updatePostTextAC>
-export const updatePostTextAC = (newText:string)=>{
-    return{
-        type:'UPDATE-NEW-POST-TEXT',
-        newText:newText,
-    }as const
-}
 
 
-export type  addMassageACType = ReturnType<typeof addMassageAC>
-export const addMassageAC = ()=>{
-    return{
-        type:'ADD-MASSAGE'
-    }as const
-}
-export type  updateMassageTextACType = ReturnType<typeof updateMassageTextAC>
-export const updateMassageTextAC = (newText:string)=>{
-    return{
-        type:'UPDATE-NEW-MASSAGE-TEXT',
-        newText:newText,
-    }as const
-}
 
 
 

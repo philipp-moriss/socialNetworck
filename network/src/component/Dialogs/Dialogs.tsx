@@ -3,13 +3,12 @@ import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/Dialogitem";
 import Message from "./DialogMassage/DialogsMassage";
 import {
-    addMassageAC,
     dialogsDataType,
     KingActionType,
     messageDataType,
-    updateMassageTextAC
 } from "../../redux/state/state";
 import ButtonMaster from "../ButtonMaster/ButtonMaster";
+import {addMassageAC, updateMassageTextAC} from "../../redux/reducer/message.reducer";
 
 
 

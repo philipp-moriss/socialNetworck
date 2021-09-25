@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addpostAC, profilePageType, updatePostTextAC} from "../../../redux/state/state";
 import ButtonMaster from "../../ButtonMaster/ButtonMaster";
+import { profilePageType } from '../../../redux/state/state';
+import {addpostAC, updatePostTextAC} from "../../../redux/reducer/profile.reducer";
 
 
 
