@@ -4,40 +4,31 @@ import DialogItem from "./DialogItem/Dialogitem";
 import Message from "./DialogMassage/DialogsMassage";
 import {
     dialogsDataType,
-    KingActionType,
     messageDataType,
-} from "../../redux/state/state";
+} from "../../redux/store/state";
 import ButtonMaster from "../ButtonMaster/ButtonMaster";
-import {addMassageAC, updateMassageTextAC} from "../../redux/reducer/message.reducer";
-
-
-
-
 
 
 type Dialogpropstype = {
-    state: { messagesData: Array<messageDataType>,newMessageText:string ,dialogsData: Array<dialogsDataType>, }
-    dispatch: (action:KingActionType)=>void
-
+    state: { messagesData: Array<messageDataType>, newMessageText: string, dialogsData: Array<dialogsDataType>, }
+    addMessage: () => void;
+    updateTextDialogs: (text: string | undefined) => void;
 }
 
 
-
-function Dialogs(props:Dialogpropstype) {
+function Dialogs(props: Dialogpropstype) {
     //destructuring
-    const {dialogsData,messagesData} = props.state
-    const {dispatch} = props
+    const {dialogsData, messagesData} = props.state
 
-    const dialog = dialogsData.map(d=><DialogItem key={d.id} img={d.img} name={d.name} id={d.id}/>);
-    const message = messagesData.map(m=><Message  key={m.id} yourmesseges={m.yourmesseges} message={m.message}/>);
+    const dialog = dialogsData.map(d => <DialogItem key={d.id} img={d.img} name={d.name} id={d.id}/>);
+    const message = messagesData.map(m => <Message key={m.id} yourmesseges={m.yourmesseges} message={m.message}/>);
     const refForArea: any = React.createRef();
     const addMessage = () => {
-        dispatch(addMassageAC())
-        dispatch(updateMassageTextAC(''))
+        props.addMessage()
     }
     const onChangeTextHandler = () => {
         let text = refForArea.current?.value
-        dispatch(updateMassageTextAC(text?text:''))
+        props.updateTextDialogs(text)
     }
     return (<div className={style.dialogs}>
         <div className={style.dialogsItems}>

@@ -1,7 +1,7 @@
 import React from 'react' ;
-import MyPosts  from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import { profilePageType} from "../../redux/state/state";
+import { profilePageType} from "../../redux/store/state";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 
@@ -17,7 +17,7 @@ const ContentProfile = (props:ProfilePostType) => {
         <div>
             <ProfileInfo img={'https://www.section.io/engineering-education/history-of-nodejs/nodejs-use-cases-cover-image.png'}/>
 
-            <MyPosts Data={props.data} dispatch={props.dispatch}/>
+            <MyPostsContainer Data={props.data} dispatch={props.dispatch}/>
         </div>
     )
 };

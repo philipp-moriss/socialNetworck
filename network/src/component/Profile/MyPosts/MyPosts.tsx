@@ -2,32 +2,32 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 import ButtonMaster from "../../ButtonMaster/ButtonMaster";
-import { profilePageType } from '../../../redux/state/state';
-import {addpostAC, updatePostTextAC} from "../../../redux/reducer/profile.reducer";
+import { profilePageType } from '../../../redux/store/state';
+
 
 
 
 export type MyPostType = {
     Data:profilePageType;
-    dispatch: (action:any)=>void;
+    addPost:()=>void;
+    updatePostText:(text:string | undefined)=>void;
 }
 
 function MyPosts(props:MyPostType) {
 
     // distructorization
-    const{ Data,dispatch }= props
+    const{ Data,}= props
 
     const post = Data.postData.map((p) => (<div key={p.id} className={style.itemPost}>
         <Post title={p.title} img={p.img} value={p.value}/>
     </div>))
     let newPostElement = React.createRef<HTMLTextAreaElement >();
     const addPost = ()=>{
-        dispatch(addpostAC())
-        dispatch(updatePostTextAC(''))
+        props.addPost()
     }
     const onPostChange = () =>{
         let text = newPostElement.current?.value
-        dispatch(updatePostTextAC(text?text:''))
+        props.updatePostText(text)
     }
     return (
         <>

@@ -1,8 +1,25 @@
-import {KingActionType, profilePageType} from "../state/state";
+import {KingActionType, profilePageType} from "../store/state";
 
+const initionalState:profilePageType ={
+    postData:[
+        {
+            id: 1,
+            title: "my first posts",
+            value: 11,
+            img: "https://www.saashub.com/images/app/service_logos/34/fecf8242eb39/large.png?1551897651",
+        },
+        {
+            id: 2,
+            title: "my to",
+            value: 23,
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeyhjuXjpN5uFiBSWPBOwkKbdCTmGD34EvR1TkdG17jTfK3km8K1CMmrbEZ7__tOrt-PU&usqp=CAU",
+        },
+    ],
+    newPostText:"string",
 
+}
 
-const profileReducer = (state:profilePageType,action:KingActionType)=>{
+const profileReducer = (state:profilePageType=initionalState,action:KingActionType)=>{
     switch (action.type){
         case "ADD-POST":{
             const newPost = {

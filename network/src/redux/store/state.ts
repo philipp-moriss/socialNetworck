@@ -45,7 +45,7 @@ export type stateType = {
 export type KingActionType = addpostACType | updatePostTextACType | addMassageACType |updateMassageTextACType
 
 type storeType = {
-    _state: stateType;
+    _store: stateType;
     getState: () => stateType;
     _callSubscriber: () => void;
     subscribe: (observer: () => void) => void;
@@ -54,7 +54,7 @@ type storeType = {
 
 }
 let store: storeType = {
-    _state : {
+    _store : {
         profilePage:{
             postData:[
                 {
@@ -95,7 +95,7 @@ let store: storeType = {
 
     },
     getState (){
-        return this._state
+        return this._store
     },
     _callSubscriber (){
         console.log("state change")
@@ -104,9 +104,9 @@ let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action){
-        this._state.profilePage = profileReducer(this._state.profilePage,action)
-        this._state.messagesPage = messageReducer(this._state.messagesPage,action)
-        this._state.sidBar = sidBarReducer(this._state.sidBar,action)
+        this._store.profilePage = profileReducer(this._store.profilePage,action)
+        this._store.messagesPage = messageReducer(this._store.messagesPage,action)
+        this._store.sidBar = sidBarReducer(this._store.sidBar,action)
         this._callSubscriber()
     }
 
