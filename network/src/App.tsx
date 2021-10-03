@@ -10,6 +10,7 @@ import Setings from "./component/Setings/Setings";
 import Friends from "./component/Friends/Friends";
 import Welcom from "./component/welcom/Welcom";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
+import store from "./redux/store/store";
 
 
 
@@ -29,7 +30,7 @@ function App() {
 
 
 
-    const componentDialog = () => <DialogsContainer/>
+    const componentDialog = () => <DialogsContainer state={store.getState().messagesPage}/>
     const componentProfile = () => <ContentProfile/>
 
     return (

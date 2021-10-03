@@ -1,7 +1,23 @@
-import {KingActionType, messagesPageType} from "../store/state";
 
 
+export type dialogsDataType = {
+    id: number;
+    name: string;
+    img:string;
+}
 
+export type messageDataType = {
+    id : number;
+    message: string;
+    yourmesseges:boolean
+
+}
+export type messagesPageType = {
+    messagesData: Array<messageDataType>;
+    newMessageText:string;
+    dialogsData: Array<dialogsDataType>;
+}
+export type KingActionType = addMassageACType |updateMassageTextACType
 const initionalState:messagesPageType = {
     messagesData : [
         {id: 1, message: "hi" ,yourmesseges : true},
@@ -25,12 +41,10 @@ const messageReducer = (state:messagesPageType=initionalState, action:KingAction
     switch (action.type){
         case "ADD-MASSAGE":{
             const newMessage ={id: 2, message: state.newMessageText, yourmesseges:true}
-            state.messagesData.push(newMessage)
-            return state
+            return {...state,messagesData:[...state.messagesData,newMessage]}
         }
         case "UPDATE-NEW-MASSAGE-TEXT":{
-            state.newMessageText = action.newText
-            return state
+            return {...state,newMessageText:action.newText}
         }
         default: {
             return state

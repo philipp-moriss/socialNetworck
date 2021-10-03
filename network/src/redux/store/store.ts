@@ -3,6 +3,10 @@ import profileReducer from "../reducer/profile.reducer";
 import sidBarReducer from "../reducer/sidBar.reducer";
 import messageReducer from "../reducer/message.reducer";
 
+
+export type storeType = typeof store
+
+
 const reducerPack = combineReducers({
     profilePage:profileReducer,
     sidBar:sidBarReducer,

@@ -1,4 +1,16 @@
-import {KingActionType, profilePageType} from "../store/state";
+
+
+export type KingActionType = addpostACType | updatePostTextACType;
+export type postDataType = {
+    id: number;
+    title: string;
+    img: string;
+    value: number;
+}
+export type profilePageType = {
+    postData: Array<postDataType>,
+    newPostText : string
+}
 
 const initionalState:profilePageType ={
     postData:[
@@ -28,12 +40,10 @@ const profileReducer = (state:profilePageType=initionalState,action:KingActionTy
                 value: 0,
                 img: "https://www.saashub.com/images/app/service_logos/34/fecf8242eb39/large.png?1551897651",
             }
-            state.postData.unshift(newPost)
-            return state
+            return {...state,postData:[newPost,...state.postData]}
         }
         case "UPDATE-NEW-POST-TEXT":{
-            state.newPostText = action.newText
-            return state
+            return {...state,newPostText:action.newText}
         }
         default:{
             return state

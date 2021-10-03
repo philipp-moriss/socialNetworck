@@ -2,11 +2,8 @@ import React from "react";
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/Dialogitem";
 import Message from "./DialogMassage/DialogsMassage";
-import {
-    dialogsDataType,
-    messageDataType,
-} from "../../redux/store/state";
 import ButtonMaster from "../ButtonMaster/ButtonMaster";
+import {dialogsDataType, messageDataType } from "../../redux/reducer/message.reducer";
 
 
 type Dialogpropstype = {

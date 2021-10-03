@@ -1,10 +1,42 @@
 import React from "react";
 import {addMassageAC, updateMassageTextAC} from "../../redux/reducer/message.reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../storeContext";
+import {connect} from "react-redux";
+import {reducerPackType} from "../../redux/store/store";
 
 
-function DialogsContainer() {
+
+
+
+
+
+
+
+
+
+let mapStateToProps = (state:reducerPackType)=>{
+    return{
+        messagesPage: state.messagesPage,
+    }
+}
+let mapDispatchToProps = (dispatch:any)=>{
+    return {
+        addMessage : () => {
+            dispatch(addMassageAC())
+            dispatch(updateMassageTextAC(''))
+        },
+        updateTextDialogs : (text: string | undefined) => {
+            dispatch(updateMassageTextAC(text ? text : ''))
+        },
+    }
+}
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+
+export default DialogsContainer;
+
+
+// old version
+/*function DialogsContainer() {
 
 
 
@@ -21,6 +53,4 @@ function DialogsContainer() {
         }
 
     }</StoreContext.Consumer>)
-}
-
-export default DialogsContainer;
+}*/

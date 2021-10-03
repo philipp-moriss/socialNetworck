@@ -2,7 +2,8 @@ import React from 'react';
 import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 import ButtonMaster from "../../ButtonMaster/ButtonMaster";
-import { profilePageType } from '../../../redux/store/state';
+import {profilePageType} from "../../../redux/reducer/profile.reducer";
+
 
 
 

@@ -1,8 +1,9 @@
-import {KingActionType, sidBarType} from "../store/state";
 
+export type sidBarType = []
 const initionalState:sidBarType =[]
 
-const sidBarReducer = (state:sidBarType=initionalState,action:KingActionType) =>{
+
+const sidBarReducer = (state:sidBarType=initionalState,action:any) =>{
 
 
 
