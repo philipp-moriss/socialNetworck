@@ -7,16 +7,12 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import News from "./component/News/News";
 import Music from "./component/Music/Music";
 import Setings from "./component/Setings/Setings";
-import {stateType} from "./redux/store/state";
 import Friends from "./component/Friends/Friends";
 import Welcom from "./component/welcom/Welcom";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
 
 
-type AppPropsDataType = {
-    state: stateType;
-    dispatch: (action: any) => void;
-}
+
 
 export const PATH = {
     PROFILE: '/Profile',
@@ -28,21 +24,13 @@ export const PATH = {
 }
 
 
-function App(props: AppPropsDataType) {
-
-    //distructarizaition
-    const {messagesPage, profilePage} = props.state
-    const {dispatch} = props
+function App() {
 
 
-    const componentDialog = () => <DialogsContainer
-        state={messagesPage}
-        dispatch={dispatch}
-    />
-    const componentProfile = () => <ContentProfile
-        data={profilePage}
-        dispatch={dispatch}
-    />
+
+
+    const componentDialog = () => <DialogsContainer/>
+    const componentProfile = () => <ContentProfile/>
 
     return (
         <BrowserRouter>
