@@ -11,7 +11,8 @@
 
 .app-wpapper-content{
   grid-area: c;
-  background: url("https://media.proglib.io/wp-uploads/2018/03/EzgdmaCQuT84bgDL4fhXZS.jpg");
+ /* background: url("https://media.proglib.io/wp-uploads/2018/03/EzgdmaCQuT84bgDL4fhXZS.jpg");*/
+  background-color: black;
 
 }
 

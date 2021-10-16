@@ -46,6 +46,9 @@ const Navbar = () => {
                          activeClassName={style.active}>Friends</NavLink>
                 {AcauntIMG}
             </div>
+            <div className={style.item}>
+                <NavLink to={PATH.USERS} activeClassName={style.active}>Users</NavLink>
+            </div>
         </nav>
     )
 };

@@ -1,0 +1,32 @@
+.item {
+    color: #f7e018;
+    font-size: 15px;
+    display: grid;
+    grid-template-rows: 1fr 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: ". users ."
+                        "pages pages pages ";
+}
+
+.users{
+    grid-area: users;
+    justify-self: center;
+}
+
+.pages{
+   background-color:  #79aca9;
+    border-radius: 50px;
+    grid-area: pages;
+}
+
+.itemSelected{
+    font-weight: bold;
+    font-size: 22px;
+    color: #6c620d;
+    padding: 10px;
+}
+
+.itemNotSelected{
+    font-size: 22px;
+    padding: 10px;
+}

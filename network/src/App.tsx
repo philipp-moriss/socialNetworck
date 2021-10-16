@@ -11,6 +11,7 @@ import Friends from "./component/Friends/Friends";
 import Welcom from "./component/welcom/Welcom";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
 import store from "./redux/store/store";
+import UsersContainer from './component/Users/UsersContainer';
 
 
 
@@ -22,6 +23,8 @@ export const PATH = {
     MUSIC: '/Music',
     SETTINGS: '/Settings',
     FRIENDS: '/Friends',
+    WELCOM: '/',
+    USERS: '/Users'
 }
 
 
@@ -30,8 +33,9 @@ function App() {
 
 
 
-    const componentDialog = () => <DialogsContainer state={store.getState().messagesPage}/>
-    const componentProfile = () => <ContentProfile/>
+    const componentDialog = () => <DialogsContainer />;
+    const componentProfile = () => <ContentProfile/>;
+    const componentUsers = () => <UsersContainer />;
 
     return (
         <BrowserRouter>
@@ -40,13 +44,14 @@ function App() {
                 <Navbar/>
                 <div className={'app-wpapper-content'}>
                     <Switch>
-                        <Route exact path={'/'} render={()=><Welcom/>}/>
+                        <Route exact path={PATH.WELCOM} render={()=><Welcom/>}/>
                         <Route path={PATH.PROFILE} render={componentProfile}/>
                         <Route path={PATH.DIALOGS} render={componentDialog}/>
                         <Route path={PATH.NEWS} component={News}/>
                         <Route path={PATH.MUSIC} component={Music}/>
                         <Route path={PATH.SETTINGS} component={Setings}/>
                         <Route path={PATH.FRIENDS} component={Friends}/>
+                        <Route path={PATH.USERS} component={componentUsers}/>
 
                     </Switch>
                 </div>

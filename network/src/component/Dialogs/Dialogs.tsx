@@ -7,7 +7,8 @@ import {dialogsDataType, messageDataType } from "../../redux/reducer/message.red
 
 
 type Dialogpropstype = {
-    state: { messagesData: Array<messageDataType>, newMessageText: string, dialogsData: Array<dialogsDataType>, }
+    messagesPage: { messagesData: Array<messageDataType>, newMessageText: string, dialogsData: Array<dialogsDataType>, }
+    // state: { messagesData: Array<messageDataType>, newMessageText: string, dialogsData: Array<dialogsDataType>, }
     addMessage: () => void;
     updateTextDialogs: (text: string | undefined) => void;
 }
@@ -15,7 +16,7 @@ type Dialogpropstype = {
 
 function Dialogs(props: Dialogpropstype) {
     //destructuring
-    const {dialogsData, messagesData} = props.state
+    const {dialogsData, messagesData} = props.messagesPage
 
     const dialog = dialogsData.map(d => <DialogItem key={d.id} img={d.img} name={d.name} id={d.id}/>);
     const message = messagesData.map(m => <Message key={m.id} yourmesseges={m.yourmesseges} message={m.message}/>);
@@ -35,7 +36,7 @@ function Dialogs(props: Dialogpropstype) {
             {message}
             <div>
                 <textarea ref={refForArea}
-                          value={props.state.newMessageText}
+                          value={props.messagesPage.newMessageText}
                           onChange={onChangeTextHandler}
                           className={style.itemTextArea}/>
                 <ButtonMaster onClickMaster={addMessage} name={"addMessege"}/>
