@@ -17,7 +17,7 @@ export type messagesPageType = {
     newMessageText:string;
     dialogsData: Array<dialogsDataType>;
 }
-export type KingActionType = addMassageACType |updateMassageTextACType
+export type MessageActionType = addMassageACType |updateMassageTextACType
 const initionalState:messagesPageType = {
     messagesData : [
         {id: 1, message: "hi" ,yourmesseges : true},
@@ -37,7 +37,7 @@ const initionalState:messagesPageType = {
 
 }
 
-const messageReducer = (state:messagesPageType=initionalState, action:KingActionType)=>{
+const messageReducer = (state:messagesPageType=initionalState, action:MessageActionType)=>{
     switch (action.type){
         case "ADD-MASSAGE":{
             const newMessage ={id: 2, message: state.newMessageText, yourmesseges:true}

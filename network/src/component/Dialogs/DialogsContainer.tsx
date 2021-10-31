@@ -3,7 +3,8 @@ import {addMassageAC, messagesPageType, updateMassageTextAC} from "../../redux/r
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import { StateRootType} from "../../redux/store/store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
+import {WithAuthComponent} from "../../Hoc/Hoc";
 
 
 
@@ -37,27 +38,12 @@ let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToProps=>{
         },
     }
 }
-const DialogsContainer = connect<MapStateToPropsType,MapDispatchToProps,{},StateRootType>(mapStateToProps,mapDispatchToProps)(Dialogs)
+
+
+const DialogsContainer = compose<React.ComponentType>(
+    connect<MapStateToPropsType,MapDispatchToProps,{},StateRootType>(mapStateToProps,mapDispatchToProps),
+    WithAuthComponent,
+)(Dialogs)
 
 export default DialogsContainer;
 
-
-// old version
-/*function DialogsContainer() {
-
-
-
-    return (<StoreContext.Consumer>{
-        (store)=>{
-            const addMessage = () => {
-                store.dispatch(addMassageAC())
-                store.dispatch(updateMassageTextAC(''))
-            }
-            const updateTextDialogs = (text: string | undefined) => {
-                store.dispatch(updateMassageTextAC(text ? text : ''))
-            }
-           return <Dialogs state={store.getState().messagesPage} addMessage={addMessage} updateTextDialogs={updateTextDialogs}/>
-        }
-
-    }</StoreContext.Consumer>)
-}*/

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{KeyboardEvent} from 'react';
 import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 import ButtonMaster from "../../ButtonMaster/ButtonMaster";
@@ -30,6 +30,11 @@ function MyPosts(props:MyPostType) {
         let text = newPostElement.current?.value
         props.updatePostText(text)
     }
+    const onKeyPressHandler = (e:KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.code === "Enter" && e.charCode===13){
+            props.addPost()
+        }
+    }
     return (
         <>
             <div><h3 className={style.itemTitle}>My post</h3>
@@ -38,6 +43,7 @@ function MyPosts(props:MyPostType) {
                         <div><textarea ref={newPostElement}
                                        onChange={onPostChange}
                                        value={props.Data.newPostText}
+                                       onKeyPress={onKeyPressHandler}
                                        className={style.itemTextArea}/></div>
                         <div>
                             <ButtonMaster onClickMaster={addPost} name={"addPost"}/>
