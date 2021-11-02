@@ -2,9 +2,9 @@ import React from "react";
 import style from "./ProfileInfo.module.css";
 import {ProfileUser} from "../../../redux/reducer/profile.reducer";
 import Preloader from "../../common/Preoalder/Preloader";
+import ProfileStatus from "../ProfileStatus";
 
 type ProfileInfoProps = {
-    img : string
     profile: ProfileUser | null
 }
 
@@ -12,10 +12,11 @@ function ProfileInfo(props:ProfileInfoProps) {
     if (!props.profile){
         return <Preloader/>
     }
+    let img = props.profile?.photos.small ? props.profile?.photos.small : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvxqFQZe0mLljqYGMi6L5aZECaUXoQ0lBm6g&usqp=CAU"
     return (<>
-        <div><img alt={"banner"} className={style.back} src={props.img}/></div>
         <div className={style.item}>
-            <img alt={"profilePhoto"} src={props.profile?.photos.small}/>
+            <img alt={"profilePhoto"} src={img} className={style.imgProfile}/>
+            <ProfileStatus status={"hello bro"}/>
             <h3>contacts</h3>
             <span>{props.profile?.contacts.vk}</span>
             <span>{props.profile?.contacts.github}</span>

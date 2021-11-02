@@ -44,7 +44,6 @@ const UsersReducer = (state: UsersType = initionalState, action: UserActionType)
             }
         }
         case "SET-USERS": {
-            debugger
             return {...state, Users: [...action.users]}
         }
         case "SET-PAGE": {
@@ -148,7 +147,7 @@ export const UnFollowTC = (userID:number) => (dispatch: Dispatch) =>{
     UserApi.unFollow(userID)
         .then(resp => {
             if (resp.resultCode === 0) {
-                dispatch( actions.followAC(userID))
+                dispatch( actions.unfollowAC(userID))
             }
             dispatch(actions.disableButtonOnFollowAC(false, userID))
         })

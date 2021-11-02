@@ -11,13 +11,12 @@ type  UserTypeProps = {
     disableButtonOnFollow: Array<number> | [];
     onPageChange: (page: number) => void;
     currentPage: number;
-    UnFollowTC : (userID: number) => void;
-    FollowTC : (userID: number) => void;
+    UnFollowTC: (userID: number) => void;
+    FollowTC: (userID: number) => void;
 }
 
 
 function Users(props: UserTypeProps) {
-    console.log("Users render")
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
     for (let i = 1; i <= pageCount; i++) {
@@ -35,7 +34,9 @@ function Users(props: UserTypeProps) {
                                 <NavLink to={`/Profile/${element.id}`}>
                                     <img
                                         src={element.photos.small ? element.photos.small : "https://i.pinimg.com/originals/a2/ec/c6/a2ecc63ed9e51495ead40e95d92ac9b3.jpg"}
-                                        alt={"user"}/>
+                                        alt={"user"}
+                                        className={style.imgUsers}
+                                    />
                                 </NavLink>
                             </div>
                             <div>
@@ -43,7 +44,7 @@ function Users(props: UserTypeProps) {
                                     <button
                                         disabled={props.disableButtonOnFollow.some((el) => el === element.id)}
                                         onClick={() => {
-                                          props.UnFollowTC(element.id)
+                                            props.UnFollowTC(element.id)
                                         }
 
                                         }>unfollow</button>

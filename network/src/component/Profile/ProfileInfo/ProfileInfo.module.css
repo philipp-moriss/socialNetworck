@@ -1,5 +1,5 @@
 
-.back{
+.back {
     height: 500px;
     width: 1200px;
 }
@@ -7,4 +7,9 @@
 .item {
     color: #f7e018;
     padding: 10px;
+}
+
+.imgProfile {
+    height: 30vh;
+    border-radius: 50px;
 }

@@ -14,7 +14,7 @@ const ContentProfile = (props:ContentProfileProps) => {
 
     return (
         <div>
-            <ProfileInfo profile={props.profile} img={'https://www.section.io/engineering-education/history-of-nodejs/nodejs-use-cases-cover-image.png'}/>
+            <ProfileInfo profile={props.profile} />
             <MyPostsContainer/>
         </div>
     )
