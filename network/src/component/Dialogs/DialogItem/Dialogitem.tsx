@@ -13,8 +13,13 @@ type DialogPropsType = {
 
 function DialogItem(props: DialogPropsType) {
     const path = `/dialogs/${props.id}`
-    return <div >
-        <NavLink className={style.dialog } to={path}><img src={props.img}/>{props.name}</NavLink>
+    return <div  >
+        <NavLink className={style.dialog } to={path}>
+            <div>
+                <img className={style.dialogsImg} alt={"imgProfile"} src={props.img}/>
+            </div>
+            {props.name}
+        </NavLink>
     </div>
 }
 

@@ -1,24 +1,29 @@
 import React from 'react';
+import { ChangeEvent } from 'react';
 import ButtonMaster from "../ButtonMaster/ButtonMaster";
 
 
 type ProfileStatusPropsType = {
     status: string
+    updateStatus:(status:string)=>void;
 }
 
 type ProfileStatusStateType = {
     editMode: boolean
+    status:string
 }
 
 
 class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatusStateType> {
     state = {
-        editMode: false
+        editMode: false,
+        status:this.props.status,
     }
+
 
     fuc = () => {
         this.setState({editMode: false})
-        console.log("aa")
+        this.setState({status: this.props.status})
         document.body.removeEventListener("click", this.fuc)
     }
 
@@ -28,11 +33,21 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
     }
 
     deactivateEditModeAndSave = () => {
-        console.log("save")
         this.setState({editMode: false})
+        this.props.updateStatus(this.state.status)
         document.body.removeEventListener("click", this.fuc)
     }
 
+    onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        this.setState({status:e.currentTarget.value})
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<ProfileStatusStateType>) {
+        if (prevProps.status !== this.props.status){
+            this.setState({
+                status:this.props.status
+            })
+        }
+    }
 
     render() {
 
@@ -40,13 +55,13 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType, ProfileStatu
             <div>
                 {!this.state.editMode &&
                 <div>
-                    <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                    <span onDoubleClick={this.activateEditMode}>{this.state.status ? this.state.status : "-----"}</span>
                 </div>
                 }
                 {this.state.editMode &&
 
                 <div>
-                    <input value={this.props.status} autoFocus/>
+                    <input value={this.state.status} onChange={this.onChangeHandler} autoFocus/>
                     <ButtonMaster onClickMaster={this.deactivateEditModeAndSave} name={"Save"}/>
                 </div>
 

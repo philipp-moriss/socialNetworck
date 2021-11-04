@@ -71,13 +71,19 @@ const ProfApi = axios.create({
     headers: {
         'API-KEY': 'e8538173-277d-4d9f-9e67-b97a7dce6542'
     },
-    baseURL: "https://social-network.samuraijs.com/api/1.0/"
+    baseURL: "https://social-network.samuraijs.com/api/1.0/profile/"
 })
 
 export const ProfileApi = {
-    getProfile(userId:number | string) {
-        return ProfApi.get<ProfileUser>(`profile/${userId}`)
+    getProfile(userId: number | string) {
+        return ProfApi.get<ProfileUser>(`${userId}`)
     },
+    getStatusProfile(userId: number | string) {
+        return ProfApi.get<string>(`status/${userId}`)
+    },
+    putStatusProfile(status: string) {
+        return ProfApi.put<{status:string},AxiosResponse<PostResponse>>(`status`, {status:status})
+    }
 
 
 }
